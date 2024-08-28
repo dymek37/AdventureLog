@@ -33,7 +33,7 @@
 			{
 				name: newItem,
 				is_checked: newStatus,
-				id: 0,
+				id: '',
 				user_id: 0,
 				checklist: 0,
 				created_at: '',

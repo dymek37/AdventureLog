@@ -3,16 +3,13 @@
 	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { addToast } from '$lib/toasts';
-	import type { Adventure, Collection, User } from '$lib/types.js';
+	import type { User } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { exportData } from '$lib';
 
 	export let data;
-	let user: User;
-	if (data.user) {
-		user = data.user;
-	}
+	let user = data.user as User;
 
 	onMount(async () => {
 		if (browser) {
@@ -96,14 +93,14 @@
 			id="last_name"
 			class="block mb-2 input input-bordered w-full max-w-xs"
 		/><br />
-		<!-- <label for="first_name">Email</label>
+		<label for="public_profile">Public Profile</label>
 		<input
-			type="email"
-			bind:value={user.email}
-			name="email"
-			id="email"
-			class="block mb-2 input input-bordered w-full max-w-xs"
-		/><br /> -->
+			type="checkbox"
+			id="public_profile"
+			name="public_profile"
+			checked={user.public_profile}
+			class="toggle block mb-2"
+		/><br />
 		<label for="profilePicture">Profile Picture</label>
 		<input
 			type="file"

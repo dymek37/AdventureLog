@@ -45,6 +45,13 @@ export const actions: Actions = {
 			let first_name = formData.get('first_name') as string | null | undefined;
 			let last_name = formData.get('last_name') as string | null | undefined;
 			let profile_pic = formData.get('profile_pic') as File | null | undefined;
+			let public_profile = formData.get('public_profile') as string | null | undefined;
+
+			if (!public_profile) {
+				public_profile = 'false';
+			} else {
+				public_profile = 'true';
+			}
 
 			const resCurrent = await fetch(`${endpoint}/auth/user/`, {
 				headers: {
@@ -71,6 +78,10 @@ export const actions: Actions = {
 				profile_pic = undefined;
 			}
 
+			if (currentUser.public_profile.toString() === public_profile) {
+				public_profile = undefined;
+			}
+
 			let formDataToSend = new FormData();
 			if (username) {
 				formDataToSend.append('username', username);
@@ -83,6 +94,9 @@ export const actions: Actions = {
 			}
 			if (profile_pic) {
 				formDataToSend.append('profile_pic', profile_pic);
+			}
+			if (public_profile) {
+				formDataToSend.append('public_profile', public_profile);
 			}
 
 			let res = await fetch(`${endpoint}/auth/user/`, {

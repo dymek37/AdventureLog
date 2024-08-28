@@ -7,6 +7,7 @@ export type User = {
 	date_joined: string | null;
 	is_staff: boolean;
 	profile_pic: string | null;
+	public_profile: boolean;
 };
 
 export type Adventure = {

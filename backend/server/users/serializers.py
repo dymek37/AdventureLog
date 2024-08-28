@@ -160,6 +160,8 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             extra_fields.append('date_joined')
         if hasattr(UserModel, 'is_staff'):
             extra_fields.append('is_staff')
+        if hasattr(UserModel, 'public_profile'):
+            extra_fields.append('public_profile')
 
         class Meta(UserDetailsSerializer.Meta):
             model = CustomUser
