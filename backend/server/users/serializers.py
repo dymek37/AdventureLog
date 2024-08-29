@@ -31,7 +31,6 @@ class ChangeEmailSerializer(serializers.Serializer):
             raise serializers.ValidationError("This email is already in use.")
         return value
     
-
 class RegisterSerializer(serializers.Serializer):
     username = serializers.CharField(
         max_length=get_username_max_length(),
@@ -162,6 +161,8 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             extra_fields.append('is_staff')
         if hasattr(UserModel, 'public_profile'):
             extra_fields.append('public_profile')
+        if hasattr(UserModel, 'uuid'):
+            extra_fields.append('uuid')
 
         class Meta(UserDetailsSerializer.Meta):
             model = CustomUser

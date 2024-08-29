@@ -14,6 +14,7 @@ from .permissions import IsOwnerOrReadOnly, IsPublicReadOnly
 from rest_framework.pagination import PageNumberPagination
 from django.shortcuts import get_object_or_404
 from rest_framework import status
+from django.contrib.auth import get_user_model
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 25
@@ -21,6 +22,8 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 1000
 
 from rest_framework.pagination import PageNumberPagination
+
+User = get_user_model()
 
 from rest_framework.decorators import action
 from rest_framework.response import Response
