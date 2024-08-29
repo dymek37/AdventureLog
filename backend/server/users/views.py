@@ -60,7 +60,7 @@ class PublicUserProfileView(APIView):
     def get(self, request, pk=None):
         if pk:
             try:
-                user = CustomUser.objects.get(pk=pk, public_profile=True)
+                user = CustomUser.objects.get(uuid=pk, public_profile=True)
                 serializer = CustomUserDetailsSerializer(user)
                 data = serializer.data
                 if 'email' in data:
